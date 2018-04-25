@@ -1,14 +1,33 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      <ion-icon name="calculator"></ion-icon> Calculadora CNEC
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+
+  <ion-list>
+
+    <ion-item>
+      <ion-label>Primeiro número</ion-label>
+      <ion-input type="number" [(ngModel)]="numeroUm"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Segundo número</ion-label>
+      <ion-input type="number" [(ngModel)]="numeroDois"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <ion-content padding>
+    <p>
+      <button ion-button round (click)="somar()">+</button>
+      <button ion-button color="danger" round (click)="subtrair()">-</button>
+      <button ion-button color="secondary" round (click)="multiplicar()">x</button>
+      <button ion-button color="dark" round (click)="dividir()">/</button>
+    </p>
+  </ion-content>
+
 </ion-content>
