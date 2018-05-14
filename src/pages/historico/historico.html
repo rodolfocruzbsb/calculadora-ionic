@@ -1,0 +1,32 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Histórico</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <ion-item-sliding *ngFor="let hist of historicos">
+ 
+      <button ion-item>
+        <h1>{{ hist.id }}</h1>
+        <h2>{{ hist.primeiroNumero }}</h2>
+        <h2>{{ hist.operacao }}</h2>
+        <h2>{{ hist.segundoNumero }}</h2>
+        <h2>{{ hist.resultado }}</h2>        
+      </button>
+ 
+      <ion-item-options side="left">
+        <button ion-button color="danger" (click)="removerHistorico(hist)">
+          <ion-icon name="trash"></ion-icon>
+          Excluir
+        </button>
+      </ion-item-options>
+ 
+    </ion-item-sliding>
+  </ion-list>
+ 
+</ion-content>

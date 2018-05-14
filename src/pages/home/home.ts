@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
+import {HistoricoPage} from '../historico/historico';
+import { HistoricoProvider, Historico } from '../../providers/historico/historico'
 
 @Component({
   selector: 'page-home',
@@ -8,16 +10,19 @@ import { AlertController } from 'ionic-angular';
 })
 export class HomePage {
 
+  historicoPage = HistoricoPage;
+
   numeroUm: string;
   numeroDois: string;
 
-  constructor(public navCtrl: NavController, public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public alertCtrl: AlertController, public historicoProvider : HistoricoProvider) {
 
   }
 
   somar() {
     if (this.validarDados()) {
       let resultado = parseInt(this.numeroUm) + parseInt(this.numeroDois);
+      this.insereHistorico(this.numeroUm, this.numeroDois, '+', resultado.toString());
       this.mostrarAlerta(resultado.toString());
     }
   }
@@ -25,6 +30,7 @@ export class HomePage {
   subtrair() {
     if (this.validarDados()) {
       let resultado = parseInt(this.numeroUm) - parseInt(this.numeroDois);
+      this.insereHistorico(this.numeroUm, this.numeroDois, '+', resultado.toString());
       this.mostrarAlerta(resultado.toString());
     }
   }
@@ -32,6 +38,7 @@ export class HomePage {
   multiplicar() {
     if (this.validarDados()) {
       let resultado = parseInt(this.numeroUm) * parseInt(this.numeroDois);
+      this.insereHistorico(this.numeroUm, this.numeroDois, '+', resultado.toString());
       this.mostrarAlerta(resultado.toString());
     }
   }
@@ -43,6 +50,7 @@ export class HomePage {
         return false;
       }
       let resultado = parseInt(this.numeroUm) / parseInt(this.numeroDois);
+      this.insereHistorico(this.numeroUm, this.numeroDois, '+', resultado.toString());
       this.mostrarAlerta(resultado.toString());
     }
   }
@@ -74,4 +82,12 @@ export class HomePage {
     alert.present();
   }
 
+  insereHistorico(primeiroNumero : string, segundoNumero : string, operacao : string, resultado : string){
+    let historico = new Historico();
+    historico.operacao = operacao;
+    historico.primeiroNumero = primeiroNumero;
+    historico.segundoNumero = segundoNumero;
+    historico.resultado = resultado;
+    this.historicoProvider.insert(historico);
+  }
 }

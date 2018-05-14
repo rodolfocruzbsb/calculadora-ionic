@@ -28,6 +28,9 @@
       <button ion-button color="secondary" round (click)="multiplicar()">x</button>
       <button ion-button color="dark" round (click)="dividir()">/</button>
     </p>
+    <p>
+      <button ion-button [navPush]="historicoPage">Histórico <ion-icon name="folder-open"></ion-icon></button>
+    </p>
   </ion-content>
 
 </ion-content>
